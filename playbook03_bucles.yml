@@ -45,4 +45,4 @@
         name: {{ item.key }}
         uid: {{ item.value.identificador }}
         comment: {{ item.value.telefono }}
-      loop: {{ mas_usuarios }}
+      loop: {{ mas_usuarios|dic2items }}
