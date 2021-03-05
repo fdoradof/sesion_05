@@ -6,6 +6,8 @@
       - usuario07
       - usuario08
       - usuario09
+  vars_files:
+    vars/default.yml
 
   tasks:
     - name: "Creacion de usuario con Bucle Simple"
@@ -37,7 +39,7 @@
     - name: "Creacion de usuarios con lista de variables"
       user:
         name: "{{ item }}"
-        status: present
+        state: present
       loop: "{{ usuarios }}"
 
     - name: "Crecion de usuarion con un Array de diccionarios"
@@ -45,4 +47,4 @@
         name: "{{ item.key }}"
         uid: "{{ item.value.identificador }}"
         comment: "{{ item.value.telefono }}"
-      loop: "{{ mas_usuarios|dic2items }}"
+      loop: "{{ mas_usuarios|dict2items }}"
