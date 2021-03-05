@@ -12,4 +12,3 @@
       command: ansible nodos -m ping
       when: estado_ssh is change
       delegate_to: localhost
-      
