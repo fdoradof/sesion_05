@@ -10,7 +10,7 @@
         - httpd-tools
         - mariadb-server
         - firewalld
-      when: ansible_distribution == "RedHat" or ansible_distribution == "CentOS" or ansible_distribution == "Fedora"
+
     
     - name: "Instalacion de servidor Apache en distribuciones de la Familia Debian"
       apt:
@@ -19,7 +19,7 @@
         - apache2
         - uwf
         - mariadb-server
-      when: ansible_distribution == "Debian" or ansible_distribution == "Ubuntu"
+
     
     - name: "Configuracion Iptables versiones inferiores o iguales a la 6 de RedHat"
       iptables:
@@ -27,7 +27,6 @@
         protocol: tcp
         destination_port: 80
         comment: Se habilita puerto apache
-      when: (ansible_distribution == "RedHat" or ansible_distribution == "CentOS" or ansible_distribution == "Fedora") and (ansible_distribution <= 6)
   
     - name: "Configuracion firewalld en version superiores a la 7 de RedHat"
       firewalld:
@@ -35,7 +34,6 @@
         permanent: yes
         immediate: yes
         state: enabled
-      when: (ansible_distribution == "RedHat" or ansible_distribution == "CentOS" or ansible_distribution == "Fedora") and (ansible_distribution >= 7)
 
     - name: "Creacion del usuario administrador Web"
       user:
@@ -46,4 +44,3 @@
     - name: "Mensje de creacion de usuario"
       debug:
         msg: " El usuario {{ nuevo_usuario_web.name }} se ha creado correctamente"
-      when: nuevo_usuario_web is changed
